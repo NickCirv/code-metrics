@@ -1,0 +1,40 @@
+{
+  "name": "code-metrics",
+  "version": "1.0.0",
+  "description": "Measure lines of code, comments, and blank lines by language — like cloc but zero-dependency Node.js",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "code-metrics": "./index.js",
+    "cmetrics": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "developer-tools",
+    "cli",
+    "nodejs",
+    "zero-dependencies",
+    "loc",
+    "metrics",
+    "cloc",
+    "statistics",
+    "lines-of-code",
+    "code-analysis",
+    "language-stats"
+  ],
+  "author": "NickCirv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NickCirv/code-metrics.git"
+  },
+  "homepage": "https://github.com/NickCirv/code-metrics#readme",
+  "bugs": {
+    "url": "https://github.com/NickCirv/code-metrics/issues"
+  }
+}
