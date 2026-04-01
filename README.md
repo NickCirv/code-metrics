@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # code-metrics
 
 Measure lines of code, comments, and blank lines by language — like `cloc` but **zero-dependency Node.js**.
