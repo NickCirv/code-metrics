@@ -1,32 +1,40 @@
-![Banner](banner.svg)
+<div align="center">
 
 # code-metrics
 
-Measure lines of code, comments, and blank lines by language — like `cloc` but **zero-dependency Node.js**.
+**Count lines of code, comments, and blanks by language — zero-dependency Node.js alternative to cloc**
 
-No npm install. No external packages. Pure Node.js built-ins (`fs`, `path`, `crypto`). ES modules. Node 18+.
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?labelColor=0B0A09)](LICENSE)
+[![Zero dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?labelColor=0B0A09)](package.json)
+[![Node ≥18](https://img.shields.io/badge/node-%3E%3D18-informational?labelColor=0B0A09)](package.json)
 
-## Quick Start
+</div>
+
+## Install
 
 ```bash
-npx code-metrics .
+npx github:NickCirv/code-metrics .
 ```
 
 Or install globally:
 
 ```bash
-npm install -g code-metrics
+npm install -g github:NickCirv/code-metrics
 cmetrics .
 ```
 
 ## Usage
 
-```
-cmetrics [dir] [options]
-code-metrics [dir] [options]
-```
+```bash
+# Analyze current directory
+cmetrics .
 
-## Options
+# Top 5 languages in ./src, JSON output
+cmetrics ./src --top 5 --format json
+
+# Compare to previous run (track deltas)
+cmetrics . --history
+```
 
 | Flag | Description |
 |------|-------------|
@@ -41,121 +49,23 @@ code-metrics [dir] [options]
 | `--version, -v` | Show version |
 | `--help, -h` | Show help |
 
-## Examples
+## What it does
 
-```bash
-# Analyze current directory
-cmetrics .
+Walks a directory tree, classifies every source file by extension, and counts code, comment, and blank lines per language — printing a table, JSON, or CSV summary. Supports 25+ languages with accurate block-comment detection. A `.code-metrics-history.json` file is saved on each run so `--history` can show line-count deltas between snapshots.
 
-# Top 5 languages in ./src
-cmetrics ./src --top 5
-
-# Only JS and TS files, JSON output
-cmetrics . --lang js,ts --format json
-
-# Group by top-level directory
-cmetrics . --by-dir
-
-# Compare to previous run (history diff)
-cmetrics . --history
-
-# Analyze a single file
-cmetrics --file index.js
-
-# Exclude additional dirs
-cmetrics . --exclude "vendor,tmp,logs"
-
-# CSV output for spreadsheets
-cmetrics . --format csv > stats.csv
-```
-
-## Sample Output
+## Sample output
 
 ```
-Analyzing: /your/project
-
 +------------+-------+-------+---------+-------+
 | Language   | Files | Blank | Comment |  Code |
 +------------+-------+-------+---------+-------+
 | TypeScript |    42 |   834 |     621 | 5,201 |
 | JavaScript |    18 |   312 |     198 | 2,104 |
 | CSS        |     6 |    89 |      34 |   621 |
-| HTML       |     4 |    45 |      12 |   388 |
-| JSON       |     3 |     0 |       0 |    87 |
 +------------+-------+-------+---------+-------+
-| SUM        |    73 | 1,280 |     865 | 8,401 |
+| SUM        |    66 | 1,235 |     853 | 7,926 |
 +------------+-------+-------+---------+-------+
-
-73 files analyzed
 ```
 
-## History / Diff
-
-Run `--history` to compare the current snapshot to the previous one. A `.code-metrics-history.json` file is saved automatically on every run.
-
-```bash
-cmetrics .           # baseline saved
-# ... make changes ...
-cmetrics . --history # shows delta
-```
-
-```
-+------------+-------+-------+---------+-------+------------+
-| Language   | Files | Blank | Comment |  Code | Delta Code |
-+------------+-------+-------+---------+-------+------------+
-| TypeScript |    44 |   860 |     640 | 5,450 |       +249 |
-| JavaScript |    18 |   312 |     198 | 2,104 |            |
-+------------+-------+-------+---------+-------+------------+
-```
-
-## Supported Languages (25+)
-
-| Extension(s) | Language |
-|-------------|----------|
-| `.js`, `.mjs`, `.cjs` | JavaScript |
-| `.ts`, `.mts`, `.cts` | TypeScript |
-| `.jsx` | React JSX |
-| `.tsx` | React TSX |
-| `.py` | Python |
-| `.rb` | Ruby |
-| `.go` | Go |
-| `.rs` | Rust |
-| `.java` | Java |
-| `.kt`, `.kts` | Kotlin |
-| `.swift` | Swift |
-| `.cpp`, `.cc`, `.cxx` | C++ |
-| `.c` | C |
-| `.h`, `.hpp` | C Header |
-| `.cs` | C# |
-| `.php` | PHP |
-| `.html`, `.htm` | HTML |
-| `.css` | CSS |
-| `.scss`, `.sass` | SCSS |
-| `.sql` | SQL |
-| `.sh`, `.bash`, `.zsh` | Shell |
-| `.json` | JSON |
-| `.yaml`, `.yml` | YAML |
-| `.md`, `.mdx` | Markdown |
-| `.toml` | TOML |
-
-## Default Excludes
-
-`node_modules`, `.git`, `dist`, `build`, `.next`, `coverage`, `__pycache__`, `.cache`
-
-Add more with `--exclude "vendor,tmp"`.
-
-## Comment Detection
-
-| Languages | Line | Block |
-|-----------|------|-------|
-| JS/TS/Go/Rust/C/Java/C#/Kotlin/Swift/PHP | `//` | `/* */` |
-| Python | `#` | `"""..."""` |
-| Ruby | `#` | `=begin...=end` |
-| Shell/YAML/TOML | `#` | — |
-| CSS/SCSS | — | `/* */` |
-| HTML/Markdown | — | `<!-- -->` |
-| SQL | `--` | `/* */` |
-
-## License
-
-MIT
+---
+<sub>Zero dependencies · Node ≥18 · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
