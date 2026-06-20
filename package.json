@@ -9,10 +9,11 @@
     "cmetrics": "./index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node --test"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20"
   },
   "keywords": [
     "developer-tools",
