@@ -1,71 +1,66 @@
-<div align="center">
+![Nicholas Ashkar — code-metrics](assets/nicholas-ashkar/banner.png)
 
 # code-metrics
 
-**Count lines of code, comments, and blanks by language — zero-dependency Node.js alternative to cloc**
+Counts code, comment and blank lines by language and directory.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue?labelColor=0B0A09)](LICENSE)
-[![Zero dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?labelColor=0B0A09)](package.json)
-[![Node ≥18](https://img.shields.io/badge/node-%3E%3D18-informational?labelColor=0B0A09)](package.json)
 
-</div>
 
-## Install
 
-```bash
-npx github:NickCirv/code-metrics .
-```
 
-Or install globally:
 
-```bash
-npm install -g github:NickCirv/code-metrics
-cmetrics .
-```
+<a id="usage"></a>
 
-## Usage
+<a id="analyze-current-directory"></a>
 
-```bash
-# Analyze current directory
-cmetrics .
+<a id="top-5-languages-in-src-json-output"></a>
 
-# Top 5 languages in ./src, JSON output
-cmetrics ./src --top 5 --format json
+<a id="compare-to-previous-run-track-deltas"></a>
 
-# Compare to previous run (track deltas)
-cmetrics . --history
-```
-
-| Flag | Description |
-|------|-------------|
-| `[dir]` | Directory to analyze (default: `.`) |
-| `--top <n>` | Show only top N languages by code lines |
-| `--lang <ext,...>` | Filter to specific extensions: `js,ts,py` |
-| `--exclude <dirs,...>` | Exclude additional directories |
-| `--format <fmt>` | Output format: `table` (default), `json`, `csv` |
-| `--by-dir` | Group results by top-level directory |
-| `--history` | Compare vs previous run saved in `.code-metrics-history.json` |
-| `--file <path>` | Analyze a single file |
-| `--version, -v` | Show version |
-| `--help, -h` | Show help |
+<a id="sample-output"></a>
 
 ## What it does
 
-Walks a directory tree, classifies every source file by extension, and counts code, comment, and blank lines per language — printing a table, JSON, or CSV summary. Supports 25+ languages with accurate block-comment detection. A `.code-metrics-history.json` file is saved on each run so `--history` can show line-count deltas between snapshots.
+- Recursive source discovery.
+- Per-language and per-directory summaries.
+- Saved metric comparisons.
 
-## Sample output
 
+<a id="install"></a>
+
+## Quickstart
+
+Prerequisites: Node.js `>=20` and npm. The checkout below pins the source used for this documentation.
+
+```sh
+git clone https://github.com/NickCirv/code-metrics.git
+cd code-metrics
+git checkout da34b38cc59a2950d9fd462ff16b55f23c1e65f1
+node index.js .
 ```
-+------------+-------+-------+---------+-------+
-| Language   | Files | Blank | Comment |  Code |
-+------------+-------+-------+---------+-------+
-| TypeScript |    42 |   834 |     621 | 5,201 |
-| JavaScript |    18 |   312 |     198 | 2,104 |
-| CSS        |     6 |    89 |      34 |   621 |
-+------------+-------+-------+---------+-------+
-| SUM        |    66 | 1,235 |     853 | 7,926 |
-+------------+-------+-------+---------+-------+
+
+**Expected behavior (illustrative, not captured):** Prints a language-oriented line-count summary for this checkout.
+
+Examples are source-inspected, **not runtime-tested**. See the research record for verification gaps.
+
+## Boundaries and data
+
+Language recognition and comment counting are heuristic. Line counts measure repository shape, not code quality or individual productivity. History features write a local file.
+
+## Development
+
+The manifest defines `npm test` as:
+
+```sh
+node --test
 ```
 
----
-<sub>Zero dependencies · Node ≥18 · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
+The captured suite is a smoke check, not end-to-end behavior coverage. Examples include “entry is valid JavaScript”. Tests were not run for this documentation revision.
+
+See [implementation and command reference](docs/REFERENCE.md) for the package scripts and inspected interfaces, and [research record](docs/RESEARCH.md) for the pinned source, document decisions and unresolved checks.
+
+## License and contact
+
+See [LICENSE](LICENSE) for the original terms and attribution. Legal text is unchanged.
+
+[Nicholas Ashkar](https://nicholashkar.com/) · [Discuss a project](https://nicholashkar.com/#oxblood-contact)
